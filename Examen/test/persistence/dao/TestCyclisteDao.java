@@ -43,7 +43,7 @@ public class TestCyclisteDao extends TU_Pere {
 	public void testDeleteById() throws DaoException {
 		testEquipe = daoEquipe.findById(1);
 		assertNotNull(testEquipe);
-		testCycliste = new Cycliste  (5,"Gerard",testEquipe, 5);
+		testCycliste = new Cycliste  (5,"Gerard",testEquipe, 5,"s");
 		daoCycliste.create(testCycliste);
 		assertNotNull(testCycliste);
 		long newId = testCycliste.getIdCycliste();
@@ -60,7 +60,7 @@ public class TestCyclisteDao extends TU_Pere {
 		try {
 			testEquipe = daoEquipe.findById(1);
 			assertNotNull(testEquipe);
-			testCycliste = new Cycliste  (0, "Gerard",testEquipe, 5);
+			testCycliste = new Cycliste  (0, "Gerard",testEquipe, 5,"s");
 			
 			daoCycliste.create(testCycliste);
 			assertNotNull(testCycliste);
@@ -92,7 +92,7 @@ public class TestCyclisteDao extends TU_Pere {
 		testEquipe = daoEquipe.findById(1);
 		assertNotNull(testEquipe);
 		
-		testCycliste = new Cycliste  (1, "Equipe Said",testEquipe, 5);
+		testCycliste = new Cycliste  (1, "Equipe Said",testEquipe, 5,"s");
 		testCycliste = daoCycliste.updateById(testCycliste);
 		
 		String name =  getInserter().select("select cycliste.name from cycliste where cycliste.id = 1").getDataAsString();

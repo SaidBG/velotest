@@ -54,4 +54,6 @@ public class Cycliste {
 		this.nickName = nickName;
 	}
 	
+	
+	
 }
