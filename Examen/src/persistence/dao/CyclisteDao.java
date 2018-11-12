@@ -19,8 +19,8 @@ public class CyclisteDao implements IDAO<Cycliste> {
 			+ "inner join equipe on equipe.id = cycliste.equipe_id";
 	public final static String _SelectId = "select * from cycliste "
 			+ "inner join equipe on equipe.id = cycliste.equipe_id where cycliste.id = ?";
-	public final static String _Insert = "insert into cycliste (name,equipe_id,nombre_velos) values (?,?,?)";
-	public final static String _Update = "update cycliste set name = ?, equipe_id = ?, nombre_velos = ? where id = ?";
+	public final static String _Insert = "insert into cycliste (name,equipe_id,nombre_velos,nickname) values (?,?,?,?)";
+	public final static String _Update = "update cycliste set name = ?, equipe_id = ?, nombre_velos = ?, nickname = ? where id = ?";
 	public final static String _Delete = "delete from cycliste where id = ?";
 	
 	
@@ -37,6 +37,7 @@ public class CyclisteDao implements IDAO<Cycliste> {
 			ps.setString(1,pT.getNameCycliste());
 			ps.setLong(2, pT.getEquipeId().getIdEquipe());	
 			ps.setInt(3, pT.getNbVelo());
+			ps.setString(4, pT.getNickName());
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -70,11 +71,13 @@ public class CyclisteDao implements IDAO<Cycliste> {
 			long idCycliste;
 			String nameCycliste;			
 			int nbVelo;
+			String nickName;
 			while (rs1.next()) {
 				idCycliste = rs1.getLong("cycliste.id");
 				nameCycliste = rs1.getString("cycliste.name");			
 				nbVelo = rs1.getInt("cycliste.nombre_velos");
-				cyclo = new Cycliste(idCycliste,nameCycliste,null,nbVelo);
+				nickName = rs1.getString("cycliste.nickname");
+				cyclo = new Cycliste(idCycliste,nameCycliste,null,nbVelo,nickName);
 				
 				
 				cnx = JDBCManagerSolo.getInstance().openConection();
@@ -93,7 +96,7 @@ public class CyclisteDao implements IDAO<Cycliste> {
 					
 				}
 					
-			cyclo = new Cycliste(idCycliste,nameCycliste,membre,nbVelo);		
+			cyclo = new Cycliste(idCycliste,nameCycliste,membre,nbVelo,nickName);		
 				
 			}
 
@@ -119,11 +122,13 @@ public class CyclisteDao implements IDAO<Cycliste> {
 			long idCycliste;
 			String nameCycliste;
 			int nbVelo;
+			String nickName;
 			while (rs1.next()) {
 				idCycliste = rs1.getLong("id");
 				nameCycliste = rs1.getString("name");				
 				nbVelo = rs1.getInt("nombre_velos");
-				cyclo = new Cycliste(idCycliste,nameCycliste,null,nbVelo);		
+				nickName = rs1.getString("nickname");
+				cyclo = new Cycliste(idCycliste,nameCycliste,null,nbVelo,nickName);		
 			
 				
 				cnx = JDBCManagerSolo.getInstance().openConection();
@@ -138,7 +143,7 @@ public class CyclisteDao implements IDAO<Cycliste> {
 					nameEquipe = rs2.getString("name");
 					budget = rs2.getLong("budget");
 					membre = new Equipe(idEquipe,nameEquipe,budget);
-					cyclo = new Cycliste(idCycliste,nameCycliste,membre,nbVelo);
+					cyclo = new Cycliste(idCycliste,nameCycliste,membre,nbVelo,nickName);
 					
 				}
 					listCycliste.add(cyclo);
@@ -165,7 +170,8 @@ public class CyclisteDao implements IDAO<Cycliste> {
 			ps1.setString(1,pT.getNameCycliste());
 			ps1.setLong(2, pT.getEquipeId().getIdEquipe());
 			ps1.setLong(3, pT.getNbVelo());
-			ps1.setLong(4, pT.getIdCycliste());
+			ps1.setString(4, pT.getNickName());
+			ps1.setLong(5, pT.getIdCycliste());
 			ps1.execute();
 
 
@@ -199,3 +205,5 @@ public class CyclisteDao implements IDAO<Cycliste> {
 	}
 
 }
+
+
