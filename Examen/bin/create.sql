@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Hôte :                        127.0.0.1
+-- HÃ´te :                        127.0.0.1
 -- Version du serveur:           5.5.61-log - MySQL Community Server (GPL)
 -- SE du serveur:                Win64
 -- HeidiSQL Version:             9.5.0.5196
@@ -24,19 +24,20 @@ CREATE TABLE IF NOT EXISTS `cycliste` (
   `name` varchar(50) NOT NULL,
   `equipe_id` int(11) NOT NULL,
   `nombre_velos` int(3) NOT NULL DEFAULT '0',
+  `nickname` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_cycliste_equipe` (`equipe_id`),
   CONSTRAINT `FK_cycliste_equipe` FOREIGN KEY (`equipe_id`) REFERENCES `equipe` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Export de données de la table basevelo_test.cycliste : ~0 rows (environ)
+-- Export de donnÃ©es de la table basevelo_test.cycliste : ~5 rows (environ)
 /*!40000 ALTER TABLE `cycliste` DISABLE KEYS */;
-INSERT INTO `cycliste` (`id`, `name`, `equipe_id`, `nombre_velos`) VALUES
-	(1, 'Marcellin', 3, 3),
-	(2, 'Espagnive', 3, 5),
-	(3, 'Paralo', 2, 2),
-	(4, 'Pesdori', 2, 1),
-	(5, 'Cremone', 1, 1);
+INSERT INTO `cycliste` (`id`, `name`, `equipe_id`, `nombre_velos`, `nickname`) VALUES
+	(1, 'Marcellin', 3, 3, 'La taupe'),
+	(2, 'Espagnive', 3, 5, 'Le catalan'),
+	(3, 'Paralo', 2, 2, 'Le parano'),
+	(4, 'Pesdori', 2, 1, 'La fleche'),
+	(5, 'Cremone', 1, 1, 'Le sudiste');
 /*!40000 ALTER TABLE `cycliste` ENABLE KEYS */;
 
 -- Export de la structure de la table basevelo_test. equipe
@@ -45,15 +46,16 @@ CREATE TABLE IF NOT EXISTS `equipe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `budget` int(11) NOT NULL,
+  `couleur` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Export de données de la table basevelo_test.equipe : ~0 rows (environ)
+-- Export de donnÃ©es de la table basevelo_test.equipe : ~3 rows (environ)
 /*!40000 ALTER TABLE `equipe` DISABLE KEYS */;
-INSERT INTO `equipe` (`id`, `name`, `budget`) VALUES
-	(1, 'Equipe Total', 500000),
-	(2, 'Equipe Carrefour', 600000),
-	(3, 'Equipe Axa', 700);
+INSERT INTO `equipe` (`id`, `name`, `budget`, `couleur`) VALUES
+	(1, 'Equipe Total', 500000, 'bleu'),
+	(2, 'Equipe Carrefour', 600000, 'blanc'),
+	(3, 'Equipe Axa', 700, 'rouge');
 /*!40000 ALTER TABLE `equipe` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
