@@ -7,11 +7,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-=======
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Users/34011-65-02/Desktop/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="lib" path="U:/Reference/03-DEVLOPM/JCV/TU/sqlinserter.jar"/>
->>>>>>> branch 'vona' of https://github.com/SaidBG/velotest
 	<classpathentry kind="output" path="bin"/>
 </classpath>
