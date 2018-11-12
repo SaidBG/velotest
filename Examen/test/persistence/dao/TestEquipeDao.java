@@ -12,7 +12,6 @@ public class TestEquipeDao extends TU_Pere {
 
 
 
-
 	int realNb = 0;
 	EquipeDao daoEquipe = new EquipeDao();
 	Equipe testEquipe = null;
@@ -36,11 +35,13 @@ public class TestEquipeDao extends TU_Pere {
 		testEquipe = daoEquipe.findById(2);
 		String name = getInserter().select("select equipe.name from equipe where id = 2").getDataAsString();
 		assertEquals(name,testEquipe.getNameEquipe());	
+		String couleur = getInserter().select("select equipe.couleur from equipe where id = 2").getDataAsString();
+		assertEquals(couleur,testEquipe.getCouleur());	
 	}
 
 
 	public void testDeleteById() throws DaoException {
-		testEquipe = new Equipe  (0, "Gerard", 5000);
+		testEquipe = new Equipe  (0, "Gerard", 5000, "jaune");
 		daoEquipe.create(testEquipe);
 		long newId = testEquipe.getIdEquipe();
 		assertEquals(realNb+1, daoEquipe.findList().size());
@@ -81,10 +82,12 @@ public class TestEquipeDao extends TU_Pere {
 		testEquipe = daoEquipe.findById(1);
 		assertNotNull(testEquipe);
 
-		testEquipe = new Equipe  (1, "Equipe Gerard", 50000);
+		testEquipe = new Equipe  (1, "Equipe Gerard", 50000, "jaune");
 		testEquipe = daoEquipe.updateById(testEquipe);
 		String name =  getInserter().select("select equipe.name from equipe where id = 1").getDataAsString();
 		assertEquals(testEquipe.getNameEquipe(), name);
+		String couleur = getInserter().select("select equipe.couleur from equipe where id = 1").getDataAsString();
+		assertEquals(couleur,testEquipe.getCouleur());	
 		Equipe a = daoEquipe.updateById(null);
 		assertNull(a);
 	}

@@ -17,8 +17,8 @@ public class EquipeDao implements IDAO<Equipe> {
 
 	public final static String _Select = "select * from equipe ";
 	public final static String _SelectId = "select * from equipe where id = ?";
-	public final static String _Insert = "insert into equipe (name,budget) values (?,?)";
-	public final static String _Update = "update equipe set name = ?, budget = ? where id = ?";
+	public final static String _Insert = "insert into equipe (name,budget,couleur) values (?,?,?)";
+	public final static String _Update = "update equipe set name = ?, budget = ?, couleur=? where id = ?";
 	public final static String _Delete = "delete from equipe where id = ?";
 
 
@@ -32,7 +32,8 @@ public class EquipeDao implements IDAO<Equipe> {
 			Connection cnx = JDBCManagerSolo.getInstance().openConection();
 			PreparedStatement ps = cnx.prepareStatement(_Insert,Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1,pT.getNameEquipe());
-			ps.setLong(2, pT.getBudget());			
+			ps.setLong(2, pT.getBudget());
+			ps.setString(3, pT.getCouleur());
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -66,11 +67,14 @@ public class EquipeDao implements IDAO<Equipe> {
 			long idEquipe;
 			String nameEquipe;
 			long budget;
+			String couleur;
 			while (rs2.next()) {
 				idEquipe = rs2.getLong("id");
 				nameEquipe = rs2.getString("name");
 				budget = rs2.getLong("budget");
-				membre = new Equipe(idEquipe,nameEquipe,budget);
+				couleur = rs2.getString("couleur");
+				membre = new Equipe(idEquipe,nameEquipe,budget, couleur);
+				
 				
 			}
 
@@ -94,11 +98,13 @@ public class EquipeDao implements IDAO<Equipe> {
 			long idEquipe;
 			String nameEquipe;
 			long budget;
+			String couleur;
 			while (rs2.next()) {
 				idEquipe = rs2.getLong("id");
 				nameEquipe = rs2.getString("name");
 				budget = rs2.getLong("budget");
-				membre = new Equipe(idEquipe,nameEquipe,budget);		
+				couleur = rs2.getString("couleur");
+				membre = new Equipe(idEquipe,nameEquipe,budget, couleur);		
 				listEquipe.add(membre);
 			}
 			
@@ -121,7 +127,8 @@ public class EquipeDao implements IDAO<Equipe> {
 			PreparedStatement ps1 = cnx1.prepareStatement(_Update);
 			ps1.setString(1,pT.getNameEquipe());
 			ps1.setLong(2, pT.getBudget());
-			ps1.setLong(3, pT.getIdEquipe());
+			ps1.setString(3, pT.getCouleur());
+			ps1.setLong(4, pT.getIdEquipe());			
 			ps1.execute();
 
 
