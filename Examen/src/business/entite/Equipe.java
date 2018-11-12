@@ -4,6 +4,14 @@ public class Equipe {
 	private long idEquipe;
 	private String nameEquipe;
 	private long budget;
+	private String couleur;
+	
+	public String getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(String couleur) {
+		this.couleur = couleur;
+	}
 	public long getIdEquipe() {
 		return idEquipe;
 	}
@@ -27,6 +35,13 @@ public class Equipe {
 		this.idEquipe = idEquipe;
 		this.nameEquipe = nameEquipe;
 		this.budget = budget;
+	}
+	public Equipe(long idEquipe, String nameEquipe, long budget, String couleur) {
+		super();
+		this.idEquipe = idEquipe;
+		this.nameEquipe = nameEquipe;
+		this.budget = budget;
+		this.couleur = couleur;
 	}
 	
 	
