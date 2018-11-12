@@ -6,6 +6,8 @@ public class Cycliste {
 	private String nameCycliste;
 	private Equipe equipeId;
 	private int nbVelo;
+	private String nickName;
+	
 	public long getIdCycliste() {
 		return idCycliste;
 	}
@@ -30,18 +32,26 @@ public class Cycliste {
 	public void setNbVelo(int nbVelo) {
 		this.nbVelo = nbVelo;
 	}
-	public Cycliste(long idCycliste, String nameCycliste, Equipe equipeId, int nbVelo) {
+
+	
+	
+	public Cycliste(long idCycliste, String nameCycliste, Equipe equipeId, int nbVelo,String nickName) {
 		super();
 		this.idCycliste = idCycliste;
 		this.nameCycliste = nameCycliste;
 		this.equipeId = equipeId;
 		this.nbVelo = nbVelo;
+		this.nickName = nickName;
 	}
 	
 	public Cycliste() {
 		
 	}
-	
-	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	
 }
