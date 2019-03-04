@@ -11,7 +11,7 @@ import persistence.pere.TU_Pere;
 public class TestEquipeDao extends TU_Pere {
 
 
-
+	int test = 0;
 	int realNb = 0;
 	EquipeDao daoEquipe = new EquipeDao();
 	Equipe testEquipe = null;
